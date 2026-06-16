@@ -113,6 +113,7 @@
             width: 100%;
             max-width: 250px;
             height: auto;
+            display: block;
         }
 
         /* Spodní lišta vycentrovaná */
@@ -150,62 +151,13 @@
     </footer>
 
     <script>
-        // Funkce pro živou aktualizaci času a data
+        // Spolehlivá funkce pro aktualizaci času a data
         function updateDateTime() {
             const datetimeElement = document.getElementById('datetime');
             const langSelect = document.getElementById('languageSelect');
-            
-            // Bezpečná kontrola, zda prvky na stránce už existují
             if (!datetimeElement || !langSelect) return;
 
             const now = new Date();
             const lang = langSelect.value;
-            
-            // Nastavení formátu podle vybraného jazyka
-            const locale = lang === 'cs' ? 'cs-CZ' : 'en-US';
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric', 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit' 
-            };
-            
-            datetimeElement.textContent = now.toLocaleDateString(locale, options);
-        }
 
-        // Funkce pro funkční přepínání jazyků
-        function changeLanguage() {
-            const langSelect = document.getElementById('languageSelect');
-            const headline = document.getElementById('headline');
-            const logo = document.getElementById('webLogo');
-            
-            if (!langSelect || !headline) return;
-            
-            const lang = langSelect.value;
-            
-            if (lang === 'cs') {
-                headline.textContent = 'Něco se chystá';
-                if(logo && logo.style.display === 'none' && logo.nextSibling) {
-                    logo.nextSibling.textContent = 'Sem vložte soubor s logem (logo.svg)';
-                }
-            } else {
-                headline.textContent = 'Something is brewing';
-                if(logo && logo.style.display === 'none' && logo.nextSibling) {
-                    logo.nextSibling.textContent = 'Insert your logo file here (logo.svg)';
-                }
-            }
-            
-            // Okamžitá změna formátu data při přepnutí jazyka
-            updateDateTime();
-        }
-
-        // Pomocná funkce, pokud v repozitáři ještě chybí obrázek logo.svg
-        function handleLogoError() {
-            const logo = document.getElementById('webLogo');
-            const langSelect = document.getElementById('languageSelect');
-            if (!logo) return;
-            
-            logo.style.display = 'none';
-            const lang
+            const monthsCs =
