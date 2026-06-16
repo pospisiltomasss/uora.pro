@@ -237,16 +237,15 @@
 
 <main>
     <h1 id="title">Project Under Construction</h1>
-    <p class="subtitle" id="sub">We are creating a space where your ideas get a perfect image through the lens of modern video production. Follow the countdown, the big reveal of the new concept is coming.</p>
+    <p class="subtitle" id="sub">We are preparing a space where your ideas get a perfect image through the lens of modern video production. Follow the countdown, the big reveal of the new concept is coming.</p>
 
     <div class="newsletter-container">
         <h3 id="news-h">Notify Me on Launch</h3>
         <p id="news-p">Leave us your email and we will send you a message as soon as we go online.</p>
         
-        <form action="https://formspree.io/f/xpqenodr" method="POST">
+        <form id="newsletter-form">
             <div class="input-group">
                 <input type="email" name="email" id="email-input" placeholder="Email" required>
-                <input type="hidden" name="_next" value="https://uora.pro/dekujeme.html">
                 <button type="submit" class="btn-red" id="btn-s">Submit</button>
             </div>
         </form>
@@ -359,7 +358,32 @@
         localStorage.setItem('uora_cookies_ok', '1');
     }
 
-    // Spuštění a inicializace v EN verzi
+    // CHYTRÉ ODESÍLÁNÍ NA POZADÍ
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const button = document.getElementById('btn-s');
+        const currentLang = document.getElementById('lang').value;
+        button.innerText = currentLang === 'cs' ? 'Odesílám...' : 'Sending...';
+        button.disabled = true;
+
+        const data = new FormData(this);
+        
+        fetch('https://formspree.io/f/xpqenodr', {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            // Uložíme si vybraný jazyk do paměti pro děkovnou stránku
+            localStorage.setItem('uora_lang', currentLang);
+            // Okamžité interní přesměrování zadarmo
+            window.location.href = 'dekujeme.html';
+        }).catch(error => {
+            alert('Chyba / Error');
+            button.disabled = false;
+            button.innerText = currentLang === 'cs' ? 'Odeslat' : 'Submit';
+        });
+    });
+
     updateTime();
     updateCountdown();
     setInterval(updateTime, 1000);
