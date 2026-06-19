@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uora | Mapa stránek (Sitemap)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --brand-gold: #dca326;
+            --border-color: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        .sitemap-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .lang-section {
+            margin-bottom: 25px;
+        }
+
+        .lang-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--brand-gold);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+        }
+
+        a:hover {
+            color: var(--text-main);
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--brand-gold);
+            color: var(--brand-gold);
+            padding: 12px 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-back:hover {
+            background: var(--brand-gold);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sitemap-box">
+        <h1 id="page-title">Mapa stránek / Sitemap</h1>
+        
+        <!-- ČESKÁ VERZE -->
+        <div class="lang-section">
+            <div class="lang-title">Čeština</div>
+            <ul>
+                <li><a href="index.html?lang=cz">Hlavní stránka</a></li>
+                <li><a href="index.html?lang=cz#o-nas">O nás & Vize</a></li>
+                <li><a href="index.html?lang=cz#projekty">Naše práce (Muzeum silnic Vikýřovice)</a></li>
+                <li><a href="index.html?lang=cz#sluzby">Služby & Balíčky</a></li>
+                <li><a href="index.html?lang=cz#kalkulace">Video Konfigurátor</a></li>
+                <li><a href="index.html?lang=cz#kontakt">Kontakt & Newsletter</a></li>
+            </ul>
+        </div>
+
+        <!-- ENGLISH VERSION -->
+        <div class="lang-section">
+            <div class="lang-title">English</div>
+            <ul>
+                <li><a href="index.html?lang=en">Homepage</a></li>
+                <li><a href="index.html?lang=en#o-nas">About Us & Vision</a></li>
+                <li><a href="index.html?lang=en#projekty">Our Work (Road Museum)</a></li>
+                <li><a href="index.html?lang=en#sluzby">Services</a></li>
+                <li><a href="index.html?lang=en#kalkulace">Video Configurator</a></li>
+                <li><a href="index.html?lang=en#kontakt">Contact & Newsletter</a></li>
+            </ul>
+        </div>
+
+        <!-- DEUTSCHE VERSION -->
+        <div class="lang-section">
+            <div class="lang-title">Deutsch</div>
+            <ul>
+                <li><a href="index.html?lang=de">Startseite</a></li>
+                <li><a href="index.html?lang=de#o-nas">Über uns & Vision</a></li>
+                <li><a href="index.html?lang=de#projekty">Unsere Arbeit (Straßenmuseum)</a></li>
+                <li><a href="index.html?lang=de#sluzby">Leistungen</a></li>
+                <li><a href="index.html?lang=de#kalkulace">Video-Konfigurator</a></li>
+                <li><a href="index.html?lang=de#kontakt">Kontakt & Newsletter</a></li>
+            </ul>
+        </div>
+
+        <a href="index.html" id="btn-back" class="btn-back">Zpět na hlavní web</a>
+    </div>
+
+    <script>
+        // Přečte jazyk z URL parametrů, aby i mapa stránek a její tlačítko zpět reagovaly správně
+        const urlParams = new URLSearchParams(window.location.search);
+        let lang = urlParams.get('lang');
+        if (!lang || !['cz', 'en', 'de'].includes(lang)) {
+            lang = 'cz';
+        }
+
+        const btnBack = document.getElementById('btn-back');
+        const pageTitle = document.getElementById('page-title');
+
+        if (lang === 'en') {
+            btnBack.innerText = "Back to Main Website";
+            btnBack.href = "index.html?lang=en";
+            pageTitle.innerText = "Sitemap";
+        } else if (lang === 'de') {
+            btnBack.innerText = "Zurück zur Hauptwebsite";
+            btnBack.href = "index.html?lang=de";
+            pageTitle.innerText = "Sitemap";
+        } else {
+            btnBack.innerText = "Zpět na hlavní web";
+            btnBack.href = "index.html?lang=cz";
+            pageTitle.innerText = "Mapa stránek";
+        }
+    </script>
+</body>
+</html>
