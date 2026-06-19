@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uora | Digital Production</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --brand-gold: #dca326;
+            --brand-red: #a63223;
+            --border-color: #222222;
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 900;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            color: var(--brand-gold);
+            border-color: var(--brand-gold);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            word-wrap: break-word;
+        }
+
+        .hero h1 span {
+            color: var(--brand-gold);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            font-weight: 300;
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- FILOZOFIE / O NÁS --- */
+        .philosophy {
+            padding: 140px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .section-label {
+            color: var(--brand-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .philosophy h2 {
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            line-height: 1.3;
+            word-wrap: break-word;
+        }
+
+        .philosophy-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .tagline-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: serif;
+            font-style: italic;
+            font-size: 2.2rem;
+            color: #555555;
+            margin-top: 40px;
+            cursor: pointer;
+            border-bottom: 1px dashed transparent;
+            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+            user-select: none;
+            max-width: 100%;
+        }
+
+        .tagline-trigger .plus-icon {
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            transition: transform 0.4s ease, color 0.4s;
+        }
+
+        .tagline-trigger:hover {
+            color: var(--brand-gold);
+            border-bottom-color: rgba(220, 163, 38, 0.4);
+        }
+
+        .tagline-trigger:hover .plus-icon {
+            transform: rotate(90deg);
+            color: var(--brand-gold);
+        }
+
+        /* --- PROJEKTY / REFERENCE --- */
+        .projects {
+            padding: 140px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-gold);
+        }
+
+        .project-card.project-upcoming {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .project-card.project-upcoming:hover {
+            transform: none;
+            border-color: var(--border-color);
+        }
+
+        .project-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #1c1c1c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .project-meta {
+            padding: 30px;
+        }
+
+        .project-client {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--brand-gold);
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-comment {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        /* --- SLUŽBY --- */
+        .services {
+            padding: 140px 0;
+            background: #0e0e0e;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .service-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 45px 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 20px;
+        }
+
+        .service-row:hover {
+            padding-left: 20px;
+            border-bottom-color: var(--brand-gold);
+        }
+
+        .service-title {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .service-desc {
+            color: var(--text-muted);
+            max-width: 550px;
+            text-align: right;
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        .process-trigger-wrap {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn-process {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px dashed var(--brand-gold);
+            color: var(--brand-gold);
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-process:hover {
+            background: rgba(220, 163, 38, 0.05);
+            border-style: solid;
+        }
+
+        /* --- KONFIGURÁTOR --- */
+        .pricing {
+            padding: 140px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .calc-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 50px;
+            max-width: 800px;
+            margin: 50px auto 0 auto;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .form-group input[type="text"], 
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            color: var(--text-main);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--brand-gold);
+            background: #1f1f1f;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+        }
+
+        .purpose-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .purpose-tag {
+            background: #1a1a1a;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .purpose-tag:hover {
+            border-color: #555;
+            color: var(--text-main);
+        }
+
+        .purpose-tag.selected {
+            background: rgba(220, 163, 38, 0.1);
+            border-color: var(--brand-gold);
+            color: var(--brand-gold);
+            font-weight: 600;
+        }
+
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .slider-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--brand-gold);
+        }
+
+        .modern-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-color);
+            outline: none;
+        }
+
+        .modern-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--brand-gold);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .modern-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .format-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .format-card {
+            border: 1px solid var(--border-color);
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            position: relative;
+        }
+
+        .format-card .visual-box {
+            border: 2px solid var(--text-muted);
+            margin: 0 auto 12px auto;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .format-card .box-portrait { width: 22px; height: 36px; }
+        .format-card .box-landscape { width: 36px; height: 22px; margin-top: 7px; margin-bottom: 19px; }
+
+        .format-card:hover {
+            border-color: #444;
+        }
+        
+        .format-card.selected {
+            border-color: var(--brand-gold);
+            background: rgba(220, 163, 38, 0.04);
+        }
+        .format-card.selected .visual-box {
+            border-color: var(--brand-gold);
+            background: rgba(220, 163, 38, 0.2);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--brand-gold);
+            color: var(--brand-gold);
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: var(--brand-gold);
+            color: #000;
+        }
+
+        /* --- KONTAKT A NEWSLETTER --- */
+        .contact {
+            padding: 140px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: start;
+            text-align: left;
+        }
+
+        .contact-info h2 {
+            font-size: 3.5rem;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            word-wrap: break-word;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-info .contact-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-info .contact-item .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .contact-info .contact-item a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: inline-block;
+            width: fit-content;
+            word-break: break-all;
+        }
+
+        .contact-info .contact-item a:hover {
+            color: var(--brand-gold);
+        }
+
+        .contact-info .contact-item.support-item a {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        .contact-info .contact-item.support-item a:hover {
+            color: var(--text-main);
+        }
+
+        .newsletter-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .newsletter-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .newsletter-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            background: #1a1a1a;
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            color: var(--text-main);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--brand-gold);
+        }
+
+        .newsletter-form .btn-newsletter {
+            background: transparent;
+            border: 1px solid var(--brand-gold);
+            color: var(--brand-gold);
+            padding: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form .btn-newsletter:hover {
+            background: var(--brand-gold);
+            color: #000;
+        }
+
+        /* --- INTERAKTIVNÍ BOČNÍ PANEL --- */
+        .side-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 500px;
+            max-width: 100%;
+            height: 100%;
+            background: #0f0f0f;
+            border-left: 1px solid var(--border-color);
+            z-index: 2000;
+            box-shadow: -20px 0 40px rgba(0,0,0,0.8);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 80px 40px;
+            overflow-y: auto;
+        }
+
+        .side-panel.open {
+            right: 0;
+        }
+
+        .side-panel-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            line-height: 1;
+        }
+
+        .side-panel-close:hover {
+            color: var(--text-main);
+        }
+
+        .side-panel-content h3 {
+            font-size: 2.2rem;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        .side-panel-content .panel-tag {
+            color: var(--brand-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .side-panel-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .side-panel-content ol {
+            color: var(--text-muted);
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .side-panel-content li {
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .side-panel-content li strong {
+            color: var(--text-main);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(6px);
+            z-index: 1500;
+            display: none;
+        }
+
+        .overlay.open {
+            display: block;
+        }
+
+        /* --- COOKIE LIŠTA --- */
+        .cookie-bar {
+            position: fixed;
+            bottom: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 48px);
+            max-width: 850px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            z-index: 3000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            transition: bottom 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .cookie-bar.show {
+            bottom: 24px;
+        }
+        
+        .cookie-content h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .cookie-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cookie {
+            padding: 10px 22px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+        
+        .btn-cookie:hover {
+            border-color: #555;
+            color: var(--text-main);
+        }
+        
+        .btn-cookie.btn-cookie-accept {
+            background: transparent;
+            border-color: var(--brand-gold);
+            color: var(--brand-gold);
+        }
+        
+        .btn-cookie.btn-cookie-accept:hover {
+            background: var(--brand-gold);
+            color: #000;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-rights a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-rights a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 1024px) {
+            .container { padding: 0 32px; }
+            .hero { padding-top: 150px; padding-bottom: 80px; }
+            .hero h1 { font-size: 3.2rem; }
+            .philosophy, .projects, .services, .pricing, .contact { padding: 100px 0; }
+            .split-grid { gap: 40px; }
+            .contact-grid { gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+            .hero h1 { font-size: 2.5rem; letter-spacing: -1px; }
+            .hero p { font-size: 1.1rem; margin-bottom: 35px; }
+            .split-grid { grid-template-columns: 1fr; gap: 30px; }
+            .projects-grid { grid-template-columns: 1fr; gap: 30px; }
+            .service-row { flex-direction: column; align-items: flex-start; gap: 10px; padding: 30px 0; }
+            .service-row:hover { padding-left: 0; }
+            .service-desc { text-align: left; max-width: 100%; }
+            .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+            .contact-info h2 { font-size: 2.5rem; }
+            .contact-item a { font-size: 1.4rem; }
+            .calc-box { padding: 30px 20px; margin-top: 35px; }
+            .footer-wrap { flex-direction: column; gap: 15px; text-align: center; }
+            .footer-rights a { display: inline-block; margin: 5px 8px; }
+            .side-panel { width: 100%; padding: 60px 24px; }
+            .nav-links { display: none; }
+            .form-grid-2 { grid-template-columns: 1fr; gap: 0; }
+            .format-options { grid-template-columns: 1fr; gap: 15px; }
+            .cookie-bar { width: calc(100% - 24px); padding: 20px; }
+            .cookie-buttons { width: 100%; gap: 8px; }
+            .btn-cookie { width: 100%; text-align: center; padding: 12px; }
+            .tagline-trigger { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .philosophy h2, .projects h2, .pricing h2 { font-size: 2rem; }
+            .service-title { font-size: 1.5rem; }
+            .contact-info h2 { font-size: 2.2rem; }
+            .contact-item a { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bodyOverlay" class="overlay" onclick="closePanel()"></div>
+
+    <div id="sidePanel" class="side-panel">
+        <button class="side-panel-close" onclick="closePanel()" aria-label="Zavřít panel">&times;</button>
+        <div id="panelContent" class="side-panel-content"></div>
+    </div>
+
+    <div id="cookieBar" class="cookie-bar">
+        <div class="cookie-content">
+            <h5 class="lang-txt" data-cz="Nastavení souborů cookies" data-en="Cookie Settings" data-de="Cookie-Einstellungen">Nastavení souborů cookies</h5>
+            <p class="lang-txt" 
+               data-cz="Používáme cookies, abychom vám zajistili co nejlepší zážitek na našem webu, analyzovali návštěvnost a personalizovali obsah." 
+               data-en="We use cookies to ensure you get the best experience on our website, analyze traffic and personalize content." 
+               data-de="Wir verwenden Cookies, um Ihnen optimalen Komfort auf unserer Website zu bieten, den Traffic zu analysieren und Inhalte zu personalisieren.">
+               Používáme cookies, abychom vám zajistili co nejlepší zážitek na našem webu, analyzovali návštěvnost a personalizovali obsah.
+            </p>
+        </div>
+        <div class="cookie-buttons">
+            <button class="btn-cookie lang-txt" onclick="acceptCookies('denied')" data-cz="Odmítnout" data-en="Decline" data-de="Ablehnen">Odmítnout</button>
+            <button class="btn-cookie lang-txt" onclick="acceptCookies('essential')" data-cz="Přijmout nezbytné" data-en="Accept Essential" data-de="Essenzielle akzeptieren">Přijmout nezbytné</button>
+            <button class="btn-cookie btn-cookie-accept lang-txt" onclick="acceptCookies('all')" data-cz="Přijmout vše" data-en="Accept All" data-de="Alle akzeptieren">Přijmout vše</button>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo.svg" alt="Uora Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#o-nas" class="lang-txt" data-cz="O nás" data-en="About us" data-de="Über uns">O nás</a></li>
+                <li><a href="#projekty" class="lang-txt" data-cz="Naše práce" data-en="Our Work" data-de="Unsere Arbeit">Naše práce</a></li>
+                <li><a href="#sluzby" class="lang-txt" data-cz="Služby" data-en="Services" data-de="Leistungen">Služby</a></li>
+                <li><a href="#kalkulace" class="lang-txt" data-cz="Konfigurátor" data-en="Configurator" data-de="Konfigurator">Konfigurátor</a></li>
+                <li><a href="#kontakt" class="lang-txt" data-cz="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button onclick="switchLang('cz')" id="btn-cz" class="lang-btn active" aria-label="Přepnout do češtiny">CZ</button>
+                <button onclick="switchLang('en')" id="btn-en" class="lang-btn" aria-label="Switch to English">EN</button>
+                <button onclick="switchLang('de')" id="btn-de" class="lang-btn" aria-label="Auf Deutsch umschalten">DE</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <h1 class="lang-txt" 
+                data-cz="Tvoříme vizuální příběhy, které <span>mají váhu</span>." 
+                data-en="We create visual stories that <span>matter</span>." 
+                data-de="Wir kreieren visuelle Geschichten, die <span>zählen</span>.">
+                Tvoříme vizuální příběhy, které <span>mají váhu</span>.
+            </h1>
+            <p class="lang-txt"
+               data-cz="Prémiová produkce pro gastro, moderní značky a sociální sítě podtržená absolutním minimalismem."
+               data-en="Premium production for gastro, modern brands and social media defined by absolute minimalism."
+               data-de="Premium-Produktion für Gastro, moderne Marken und Social Media, definiert durch absoluten Minimalismus.">
+               Prémiová produkce pro gastro, moderní značky a sociální sítě podtržená absolutním minimalismem.
+            </p>
+            
+            <div class="video-container">
+                <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    <source src="uvod.mp4" type="video/mp4">
+                    Váš prohlížeč nepodporuje přehrávání videa.
+                </video>
+            </div>
+        </section>
+
+        <section id="o-nas" class="philosophy container">
+            <div class="split-grid">
+                <div>
+                    <span class="section-label">01 / About us</span>
+                    <h2 class="lang-txt" 
+                        data-cz="Kdo jsme" 
+                        data-en="Who we are" 
+                        data-de="Wer wir sind">
+                        Kdo jsme
+                    </h2>
+                </div>
+                <div class="philosophy-text">
+                    <p class="lang-txt"
+                       data-cz="Jsme malý, flexibilní tým mladých lidí, které baví digitální tvorba. Nezatěžujeme klienty složitým korporátním procesem ani zbytečným hlukem. Soustředíme se na to podstatné – dáváme kavárnám, restauracím a moderním značkám vizuálně čistou a silnou tvář, která dává smysl na sociálních sítích i webu."
+                       data-en="We are a small, flexible team of young creators who love digital production. No heavy corporate processes, no unnecessary noise. We focus on what matters – giving cafes, restaurants and modern brands a clean and visually impactful identity."
+                       data-de="Wir sind ein kleines, flexibles Team junger Kreativer, die digitale Produktion lieben. Keine komplizierten Konzernprozesse, kein unnötiger Lärm. Wir konzentrieren uns auf das Wesentliche.">
+                       Jsme malý, flexibilní tým mladých lidí, které baví digitální tvorba. Nezatěžujeme klienty složitým korporátním procesem ani zbytečným hlukem. Soustředíme se na to podstatné – dáváme kavárnám, restauracím a moderním značkám vizuálně čistou a silnou tvář, která dává smysl na sociálních sítích i webu.
+                    </p>
+                    
+                    <div class="tagline-trigger" onclick="openAboutDetail()">
+                        <span>More details</span>
+                        <span class="plus-icon">+</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projekty" class="projects container">
+            <span class="section-label">02 / Selected Work</span>
+            <h2 class="lang-txt" data-cz="Vybrané projekty" data-en="Featured Projects" data-de="Ausgewählte Projekte">Vybrané projekty</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card" onclick="openProjectDetail('muzeum')">
+                    <div class="project-thumb">
+                        <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <source src="2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-client">Muzeum silnic Vikýřovice</div>
+                        <div class="project-title lang-txt" data-cz="Prezentační video expozice" data-en="Exposition Presentation Video" data-de="Ausstellung Präsentationsvideo">Prezentační video expozice</div>
+                        <div class="project-comment lang-txt" data-cz="Natočili jsme přirozené dvouminutové video, které představuje expozice a klidnou atmosféru muzea." data-en="We shot a natural 2-minute video that introduces the expositions and peaceful atmosphere." data-de="Wir haben ein natürliches 2-minütiges Video gedreht, das die Ausstellungen vorstellt.">Natočili jsme přirozené dvouminutové video, které představuje expozice a klidnou atmosféru muzea.</div>
+                    </div>
+                </div>
+
+                <div class="project-card project-upcoming">
+                    <div class="project-thumb lang-txt" data-cz="Nová reference již brzy..." data-en="New project coming soon..." data-de="Neues Projekt demnächst...">
+                        Nová reference již brzy...
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-client lang-txt" data-cz="Připravujeme" data-en="In Progress" data-de="In Vorbereitung">Připravujeme</div>
+                        <div class="project-title lang-txt" data-cz="Další vizuální příběh" data-en="Next Visual Story" data-de="Nächste visuelle Geschichte">Další vizuální příběh</div>
+                        <div class="project-comment lang-txt" data-cz="Aktuálně pracujeme na postprodukci nového materiálu. Sledujte nás." data-en="We are currently working on post-production. Stay tuned." data-de="Wir arbeiten derzeit an der Postproduktion.">Aktuálně pracujeme na postprodukci nového materiálu. Sledujte nás.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sluzby" class="services">
+            <div class="container">
+                <span class="section-label">03 / Services</span>
+                
+                <div class="service-row" onclick="openServiceDetail('reklamni')">
+                    <div class="service-title lang-txt" data-cz="Reklamní videa pro podniky" data-en="Commercials for Businesses" data-de="Werbespots für Unternehmen">Reklamní videa pro podniky</div>
+                    <div class="service-desc lang-txt" 
+                        data-cz="Prezentační a promo videa se silnou atmosférou na míru." 
+                        data-en="Presentation and promo videos with a strong tailored atmosphere." 
+                        data-de="Präsentations- und Promo-Videos mit starker, maßgeschneiderter Atmosphäre.">
+                        Prezentační a promo videa se silnou atmosférou na míru.
+                    </div>
+                </div>
+
+                <div class="service-row" onclick="openServiceDetail('socials')">
+                    <div class="service-title lang-txt" data-cz="Obsah na sociální sítě" data-en="Social Media Content" data-de="Social Media Content">Obsah na sociální sítě</div>
+                    <div class="service-desc lang-txt" 
+                        data-cz="Pravidelné balíčky chytlavých Reels, TikToků a Shorts." 
+                        data-en="Regular packages of catchy Reels, TikToks and Shorts." 
+                        data-de="Regelmäßige Pakete mit packenden Reels, TikToks und Shorts.">
+                        Pravidelné balíčky chytlavých Reels, TikToků a Shorts.
+                    </div>
+                </div>
+
+                <div class="service-row" onclick="openServiceDetail('dron')">
+                    <div class="service-title lang-txt" data-cz="Individuální dron & foto" data-en="Custom Drone & Photos" data-de="Individuelle Drohne & Foto">Individuální dron & foto</div>
+                    <div class="service-desc lang-txt" 
+                        data-cz="Filmové letecké záběry či produktové sety fotografií." 
+                        data-en="Cinematic aerial footage or product photo sets." 
+                        data-de="Kinoreife Luftaufnahmen oder Produktfotosets.">
+                        Filmové letecké záběry či produktové sety fotografií.
+                    </div>
+                </div>
+                
+                <div class="process-trigger-wrap">
+                    <button class="btn-process lang-txt" onclick="openProcessDetail()" data-cz="Jak probíhá spolupráce? &rarr;" data-en="How does it work? &rarr;" data-de="Wie funktioniert es? &rarr;">Jak probíhá spolupráce? &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="kalkulace" class="pricing container">
+            <div style="text-align: center;">
+                <span class="section-label">04 / Production Build</span>
+                <h2 class="lang-txt" data-cz="Navrhni si své reklamní video" data-en="Configure Your Video" data-de="Konfigurieren Sie Ihr Video">Navrhni si své reklamní video</h2>
+            </div>
+
+            <div class="calc-box">
+                <form id="configuratorForm">
+                    
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="jmeno" class="lang-txt" data-cz="Jméno" data-en="First Name" data-de="Vorname">Jméno</label>
+                            <input type="text" id="jmeno" name="jmeno" placeholder="Jan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prijmeni" class="lang-txt" data-cz="Příjmení" data-en="Last Name" data-de="Nachname">Příjmení</label>
+                            <input type="text" id="prijmeni" name="prijmeni" placeholder="Novák" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="calc-email" class="lang-txt" data-cz="Váš e-mail" data-en="Your email" data-de="Ihre E-Mail">Váš e-mail</label>
+                            <input type="email" id="calc-email" name="email" placeholder="novak@firma.cz" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lokace" class="lang-txt" data-cz="Kde se bude natáčet? (Město)" data-en="Shooting location (City)" data-de="Drehort (Stadt)">Kde se bude natáčet? (Město)</label>
+                            <input type="text" id="lokace" name="lokace" placeholder="Např. Praha, Brno..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-txt" data-cz="Hlavní záměr a účel videa" data-en="Main purpose of the video" data-de="Hauptzweck des Videos">Hlavní záměr a účel videa</label>
+                        <div class="purpose-options">
+                            <div class="purpose-tag selected" onclick="selectPurpose(this, 'Prodej produktu / Gastro menu')">Prodej produktu / Gastro menu</div>
+                            <div class="purpose-tag" onclick="selectPurpose(this, 'Image a prestiž značky')">Image a prestiž značky</div>
+                            <div class="purpose-tag" onclick="selectPurpose(this, 'Nábor zaměstnanců')">Nábor zaměstnanců</div>
+                            <div class="purpose-tag" onclick="selectPurpose(this, 'Promo akce / Event')">Promo akce / Event</div>
+                        </div>
+                        <input type="hidden" name="ucel_videa" id="ucel_videa_input" value="Prodej produktu / Gastro menu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pocet_videi" class="lang-txt" data-cz="Kolik videí celkem potřebujete?" data-en="How many videos do you need?" data-de="Wie viele Videos benötigen Sie?">Kolik videí celkem potřebujete?</label>
+                        <input type="text" id="pocet_videi" name="pocet_videi" placeholder="Např. 1 hlavní video + 2 krátké střihy" required>
+                    </div>
+
+                    <div class="form-group slider-container">
+                        <label class="lang-txt" data-cz="Přibližná délka jednoho videa" data-en="Approximate video length" data-de="Ungefähre Videolänge">Přibližná délka jednoho videa</label>
+                        <div class="slider-info">
+                            <span id="slider-value">30 sekund</span>
+                        </div>
+                        <input type="range" id="delka_videa" name="delka_videa" min="5" max="120" value="30" step="5" class="modern-slider" oninput="updateSliderValue(this.value)">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-txt" data-cz="Formát a orientace videa" data-en="Video format & orientation" data-de="Videoformat & Orientierung">Formát a orientace videa</label>
+                        <div class="format-options">
+                            <div class="format-card selected" id="card-portrait" onclick="selectFormat('portrait')">
+                                <div class="visual-box box-portrait"></div>
+                                <span class="lang-txt" data-cz="Na výšku (9:16)" data-en="Portrait (9:16)" data-de="Hochformat (9:16)">Na výšku (9:16)</span>
+                                <span style="display:block; font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Reels, TikTok, Shorts</span>
+                            </div>
+                            <div class="format-card" id="card-landscape" onclick="selectFormat('landscape')">
+                                <div class="visual-box box-landscape"></div>
+                                <span class="lang-txt" data-cz="Na šířku (16:9)" data-en="Landscape (16:9)" data-de="Querformat (16:9)">Na šířku (16:9)</span>
+                                <span style="display:block; font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Web, YouTube, TV</span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="format_videa" id="format_videa_input" value="Na výšku (9:16)">
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="termin" class="lang-txt" data-cz="Kdy nejpozději to má být hotové?" data-en="Deadline / Timeline" data-de="Soll es fertig sein?">Kdy nejpozději to má být hotové?</label>
+                            <input type="text" id="termin" name="termin" placeholder="Např. do měsíce, spěchá to..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rozpocet" class="lang-txt" data-cz="Předpokládaný rozpočet (volitelné)" data-en="Estimated budget (optional)" data-de="Ungefähres Budget (optional)">Předpokládaný rozpočet (volitelné)</label>
+                            <input type="text" id="rozpocet" name="rozpocet" placeholder="Např. 20 - 40 tisíc Kč">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="poznamka" class="lang-txt" data-cz="Vaše představa / Odkazy na inspiraci" data-en="Your ideas / Inspiration links" data-de="Ihre Vorstellung / Inspiration">Vaše představa / Odkazy na inspiraci</label>
+                        <textarea id="poznamka" name="poznamka" placeholder="Popište nám stručně styl, náladu videa nebo vložte odkaz na video, které se vám líbí..."></textarea>
+                    </div>
+
+                    <button type="submit" id="configuratorSubmitBtn" class="btn-submit lang-txt" data-cz="Odeslat konfiguraci" data-en="Send Configuration" data-de="Konfiguration senden">Odeslat konfiguraci</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="kontakt" class="contact container">
+            <span class="section-label">05 / Contact</span>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 class="lang-txt" data-cz="Pojďme tvořit." data-en="Let's create." data-de="Lassen Sie uns kreieren.">Pojďme tvořit.</h2>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="label">General</span>
+                            <a href="mailto:info@uora.pro">info@uora.pro</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="label">Phone</span>
+                            <a href="tel:+420733466264">+420 733 466 264</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="label">Instagram</span>
+                            <a href="https://instagram.com/uora.pro" target="_blank">@uora.pro</a>
+                        </div>
+                        <div class="contact-item support-item">
+                            <span class="label">Support</span>
+                            <a href="mailto:podpora@uora.pro" id="support-link">podpora@uora.pro</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="newsletter-box">
+                    <h4 class="lang-txt" data-cz="Měsíční tipy" data-en="Monthly Insights" data-de="Monatliche Einblicke">Měsíční tipy</h4>
+                    <p class="lang-txt" 
+                       data-cz="Odebírejte naše exkluzivní rady o vizuálním marketingu, tvorbě obsahu a budování silného moderního brandu pro jakýkoliv obor." 
+                       data-en="Subscribe to our exclusive advice on visual marketing, content creation and building a strong modern brand for any industry." 
+                       data-de="Abonnieren Sie unsere exklusiven Ratschläge zu visuellem Marketing, Inhaltserstellung und dem Aufbau einer starken modernen Marke für jede Branche.">
+                       Odebírejte naše exkluzivní rady o vizuálním marketingu, tvorbě obsahu a budování silného moderního brandu pro jakýkoliv obor.
+                    </p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <input type="email" name="email" placeholder="Email..." required>
+                        <button type="submit" id="newsletterSubmitBtn" class="btn-newsletter lang-txt" data-cz="Odebírat tipy" data-en="Subscribe Now" data-de="Abonnieren">Odebírat tipy</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-wrap">
+            <div class="footer-rights">
+                <span class="lang-txt" 
+                      data-cz="&copy; 2026 Uora. Všechna práva vyhrazena." 
+                      data-en="&copy; 2026 Uora. All rights reserved." 
+                      data-de="&copy; 2026 Uora. Alle Rechte vorbehalten.">
+                      &copy; 2026 Uora. Všechna práva vyhrazena.
+                </span>
+                <a href="sitemap.html" class="lang-txt" data-cz="Mapa stránek" data-en="Sitemap" data-de="Sitemap">Mapa stránek</a>
+                <a href="#" onclick="showCookieBar(event)" class="lang-txt" data-cz="Nastavení cookies" data-en="Cookie preferences" data-de="Cookie-Einstellungen">Nastavení cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'cz';
+
+        // --- COOKIE FUNKCIONALITA ---
+        window.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    document.getElementById('cookieBar').classList.add('show');
+                }, 1000);
+            }
+        });
+
+        function showCookieBar(e) {
+            e.preventDefault();
+            document.getElementById('cookieBar').classList.add('show');
+        }
+
+        function acceptCookies(type) {
+            localStorage.setItem('cookieConsent', type);
+            document.getElementById('cookieBar').classList.remove('show');
+        }
+
+        // --- HRAVÉ ŠTÍTKY (ÚČEL VIDEA) ---
+        function selectPurpose(element, value) {
+            document.querySelectorAll('.purpose-tag').forEach(tag => tag.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('ucel_videa_input').value = value;
+        }
+
+        // --- SLIDER DÉLKY ---
+        function updateSliderValue(val) {
+            const textElement = document.getElementById('slider-value');
+            if (currentLang === 'en') {
+                textElement.innerText = val + ' seconds';
+            } else if (currentLang === 'de') {
+                textElement.innerText = val + ' Sekunden';
+            } else {
+                textElement.innerText = val + ' sekund';
+            }
+        }
+
+        // --- FORMÁT VIDEA ---
+        function selectFormat(type) {
+            document.getElementById('card-portrait').classList.remove('selected');
+            document.getElementById('card-landscape').classList.remove('selected');
+            
+            const input = document.getElementById('format_videa_input');
+            
+            if (type === 'portrait') {
+                document.getElementById('card-portrait').classList.add('selected');
+                input.value = "Na výšku (9:16)";
+            } else {
+                document.getElementById('card-landscape').classList.add('selected');
+                input.value = "Na šířku (16:9)";
+            }
+        }
+
+        // --- VYGENERUJE SPRÁVNOU CESTU K DIKY.HTML ---
+        function getRedirectUrl(lang) {
+            let baseDir = window.location.protocol + '//' + window.location.host + window.location.pathname;
+            if (baseDir.endsWith('index.html')) {
+                baseDir = baseDir.substring(0, baseDir.lastIndexOf('index.html'));
+            }
+            if (!baseDir.endsWith('/')) { baseDir += '/'; }
+            return baseDir + 'diky.html?lang=' + lang;
+        }
+
+        // --- JAZYKOVÝ MUTATOR ---
+        function switchLang(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('.lang-txt');
+            elements.forEach(el => {
+                const newText = el.getAttribute(`data-${lang}`);
+                if (newText) { el.innerHTML = newText; }
+            });
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            const supportLink = document.getElementById('support-link');
+            if (lang === 'cz') {
+                supportLink.href = "mailto:podpora@uora.pro";
+                supportLink.innerText = "podpora@uora.pro";
+            } else {
+                supportLink.href = "mailto:support@uora.pro";
+                supportLink.innerText = "support@uora.pro";
+            }
+
+            const sliderVal = document.getElementById('delka_videa').value;
+            updateSliderValue(sliderVal);
+            
+            if(window.activePanelKey) {
+                renderPanelContent(window.activePanelKey);
+            }
+        }
+
+        // --- ODESÍLÁNÍ NEWSLETTERU / KONFIGURÁTORU ---
+        document.getElementById('configuratorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const button = document.getElementById('configuratorSubmitBtn');
+            button.innerText = currentLang === 'en' ? 'Sending...' : (currentLang === 'de' ? 'Senden...' : 'Odesílám...');
+            button.disabled = true;
+            fetch('https://formspree.io/f/xojzgjjl', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(() => { window.location.href = getRedirectUrl(currentLang); })
+              .catch(() => { window.location.href = getRedirectUrl(currentLang); });
+        });
+
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const button = document.getElementById('newsletterSubmitBtn');
+            button.innerText = '...';
+            button.disabled = true;
+            fetch('https://formspree.io/f/xnjyejnk', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(() => { window.location.href = getRedirectUrl(currentLang); })
+              .catch(() => { window.location.href = getRedirectUrl(currentLang); });
+        });
+
+        // --- PANEL DATA ---
+        const panelData = {
+            about: {
+                cz: { tag: "Kdo jsme", title: "Náš příběh", text: "Jsme zkrátka parta mladých lidí, které spojuje vášeň pro čisté záběry, moderní technologie a vizuální tvorbu. Nebaví nás zdlouhavé schůzky bez jasného výsledku and složitá byrokracie. Baví nás přicházet s nápady, které fungují. Věříme, že v jednoduchosti je síla – a právě proto se snažíme, aby každé video mělo jasnou myšlenku a dalo vašemu podniku přesně to, co v digitálním prostoru potřebuje." },
+                en: { tag: "Who we are", title: "Our Story", text: "We are just a group of young people bound by a passion for clean shots, modern tech, and digital production. We don't like long meetings with no outcomes or endless bureaucracy. We like ideas that work." },
+                de: { tag: "Wer wir sind", title: "Unsere Geschichte", text: "Wir sind einfach eine Gruppe junger Leute, die die Leidenschaft für saubere Aufnahmen, moderne Technologie und digitale Produktion verbindet." }
+            },
+            muzeum: {
+                cz: { tag: "Reference", title: "Muzeum silnic Vikýřovice", text: "Pro toto technické muzeum jsme připravili ucelené dvouminutové prezentační video, které provází diváka stálými expozicemi. Snažili jsme se o naprosto přirozené a lidské zachycení tamních historických prostor a zajímavých exponátů. Naším hlavním záměrem bylo vytvořit čisté, estetické video, které navodí poklidnou atmosféru místa a vzbudí chuť u rodin i nadšenců do historie přijít se podívat osobně." },
+                en: { tag: "Reference", title: "Road Museum", text: "We created a comprehensive 2-minute presentation video for the museum, guiding viewers through their permanent exhibitions in a natural and authentic way." },
+                de: { tag: "Referenz", title: "Straßenmuseum", text: "Wir haben ein umfassendes 2-minütiges Präsentationsvideo für das Museum erstellt, das die Zuschauer auf natürliche Weise durch die Ausstellungen führt." }
+            },
+            reklamni: {
+                cz: { tag: "Služba", title: "Reklamní videa", text: "Dlouhodobě udržitelná image vašeho podniku. Postaráme se o kompletní proces od kreativního scénáře a moodboardu, přes profesionální nasvícení scény a režii na place, až po výsledný sound design a precizní color grading na filmové úrovni." },
+                en: { tag: "Service", title: "Commercial Videos", text: "Long-term sustainable image for your business. We handle everything from creative script to professional lighting, direction, sound design, and color grading." },
+                de: { tag: "Service", title: "Werbevideos", text: "Langfristig nachhaltiges Image für Ihr Unternehmen. Wir kümmern uns um alles, vom kreativen Skript über professionelle Beleuchtung, Regie, Sounddesign bis hin zum Color Grading." }
+            },
+            socials: {
+                cz: { tag: "Služba", title: "Obsah na sítě", text: "Mobilní formáty jako Reels, TikTok a Shorts vyžadují specifický přístup – musíte diváka zaujmout během prvních dvou vteřin. Vytvoříme pro váš podnik ucelený plán a pravidelně dodáme balíček videí, která organicky zasáhnou vaše cílové publikum." },
+                en: { tag: "Service", title: "Socials Content", text: "Mobile formats require specific approach - hook in 2 seconds. We create tailored plans and shoot video packages that organically reach your target audience." },
+                de: { tag: "Service", title: "Social Media Content", text: "Mobile Formate erfordern einen spezifischen Ansatz – Hook in 2 Sekunden. Wir erstellen maßgeschneiderte Pläne und erstellen Videopakete." }
+            },
+            dron: {
+                cz: { tag: "Služba", title: "Dron & Foto na míru", text: "Někdy nepotřebujete celou kampaň, ale jen ty správné čisté podklady. Nabízíme samostatné certifikované přelety dronem ve vysokém 4K rozlišení nebo nafocení designových interiérů a produktů pro váš web či tiskové materiály." },
+                en: { tag: "Service", title: "Drone & Custom Photo", text: "Sometimes you just need high-res certified drone flyovers or interior styling shots for web or print. Fully independent and flexible." },
+                de: { tag: "Service", title: "Drohne & Foto", text: "Manchmal benötigen Sie einfach hochauflösende, zertifizierte Drohnenüberflüge oder Aufnahmen für das Web oder den Druck." }
+            },
+            process: {
+                cz: {
+                    tag: "Proces",
+                    title: "Postup naší spolupráce",
+                    text: `Celá realizace probíhá podle jasně definovaných fází, které zajišťují hladký průběh a profesionální výsledek bez zbytečné administrativní zátěže:
+                    <ol style="margin-top:20px;">
+                        <li><strong>1. Úvodní konzultace a specifikace cílů</strong><br>Definujeme vaše představy, klíčové sdělení, cílovou skupinu a primární účel videoobsahu. Setkáme se osobně, nebo online.</li>
+                        <li><strong>2. Kreativní koncept a plánování výroby</strong><br>Sestavíme stručný scénář a vizuální moodboard, které definují celkovou náladu díla. Následně koordinujeme přesný harmonogram a termín natáčení.</li>
+                        <li><strong>3. Samotná produkce (Natáčení na místě)</strong><br>Zajistíme kompletní technickou realizaci a záznam materiálu. Na place pracujeme efektivně a s maximálním ohledem na plynulý chod vašeho provozu.</li>
+                        <li><strong>4. Postprodukce, střih a revize</strong><br>Zpracujeme materiál v profesionální střižně – postaráme se o střih, výběr licencované hudby, sound design a filmovou barevnou korekci. Následně vám zašleme náhled ke schválení.</li>
+                        <li><strong>5. Finální export a předání díla</strong><br>Po zapracování případných drobných korekcí vám předáme hotové master soubory v nejvyšší kvalitě, plně optimalizované pro nasazení na web i sociální sítě.</li>
+                    </ol>`
+                },
+                en: {
+                    tag: "Process",
+                    title: "How we work together",
+                    text: `A professional, straightforward process designed to deliver exceptional results with minimal overhead:
+                    <ol style="margin-top:20px;">
+                        <li><strong>1. Discovery & Strategy Meeting</strong><br>We analyze your business goals, target audience, and set clear visual expectations.</li>
+                        <li><strong>2. Creative Concept & Moodboarding</strong><br>We draft a clear script framework and aesthetic roadmap, establishing the production timeline.</li>
+                        <li><strong>3. Production Day (On-Site Filming)</strong><br>We deploy premium camera and audio equipment. We shoot fast and stay out of your staff's way.</li>
+                        <li><strong>4. Post-Production & Client Review</strong><br>We craft the video using professional coloring, pacing, licensed soundtrack, and sound effects, providing a private preview link.</li>
+                        <li><strong>5. Final Delivery & Deployment</strong><br>Upon approval, you receive high-fidelity video exports tailor-made for all digital and social platforms.</li>
+                    </ol>`
+                },
+                de: {
+                    tag: "Prozess",
+                    title: "Ablauf unserer Zusammenarbeit",
+                    text: `Ein transparenter und strukturierter Ablauf für ein professionelles Endergebnis:
+                    <ol style="margin-top:20px;">
+                        <li><strong>1. Erstgespräch & Zieldefinition</strong><br>Wir besprechen Ihre Vorstellungen und Ziele.</li>
+                        <li><strong>2. Konzept & Planung</strong><br>Erstellung eines kurzen Skripts, Moodboards und Zeitplans.</li>
+                        <li><strong>3. Produktion (Drehtag vor Ort)</strong><br>Schneller und unkomplizierter Dreh mit Rücksicht auf Ihren Betrieb.</li>
+                        <li><strong>4. Postproduktion & Korrekturen</strong><br>Videoschnitt, Sounddesign, Musikuntermalung und Farbkorrektur mit Voransicht.</li>
+                        <li><strong>5. Lieferung</strong><br>Bereitstellung der fertigen Videodateien in bester Qualität.</li>
+                    </ol>`
+                }
+            }
+        };
+
+        function renderPanelContent(dataKey) {
+            const content = panelData[dataKey][currentLang] || panelData[dataKey]['cz'];
+            const container = document.getElementById('panelContent');
+            container.innerHTML = `
+                <span class="panel-tag">${content.tag}</span>
+                <h3>${content.title}</h3>
+                <div style="color:var(--text-muted); font-size:1.1rem; line-height:1.7; font-weight:300;">${content.text}</div>
+            `;
+        }
+
+        function showPanel(dataKey) {
+            window.activePanelKey = dataKey;
+            renderPanelContent(dataKey);
+            document.getElementById('sidePanel').classList.add('open');
+            document.getElementById('bodyOverlay').classList.add('open');
+        }
+
+        function closePanel() {
+            window.activePanelKey = null;
+            document.getElementById('sidePanel').classList.remove('open');
+            document.getElementById('bodyOverlay').classList.remove('open');
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') { closePanel(); }
+        });
+
+        function openAboutDetail() { showPanel('about'); }
+        function openProjectDetail(id) { showPanel(id); }
+        function openServiceDetail(id) { showPanel(id); }
+        function openProcessDetail() { showPanel('process'); }
+    </script>
+</body>
+</html>
