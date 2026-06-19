@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uora | Thank You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --brand-gold: #dca326;
+            --border-color: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .thankyou-box {
+            max-width: 500px;
+        }
+
+        .icon {
+            font-size: 3rem;
+            color: var(--brand-gold);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-weight: 300;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--text-main);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="thankyou-box">
+        <div class="icon">✓</div>
+        
+        <div id="msg-cz">
+            <h1>Děkujeme!</h1>
+            <p>Váš odběr byl úspěšně potvrzen. Brzy vám zašleme první nálož tipů pro budování moderního brandu.</p>
+            <a href="index.html" class="btn-back">Zpět na hlavní stránku</a>
+        </div>
+
+        <div id="msg-en" style="display: none;">
+            <h1>Thank You!</h1>
+            <p>Your subscription has been successfully confirmed. We will soon send you the first insights on building a modern brand.</p>
+            <a href="index.html" class="btn-back">Back to home</a>
+        </div>
+
+        <div id="msg-de" style="display: none;">
+            <h1>Vielen Dank!</h1>
+            <p>Ihr Abonnement wurde erfolgreich bestätigt. Wir senden Ihnen bald die ersten Einblicke in den Aufbau einer modernen Marke.</p>
+            <a href="index.html" class="btn-back">Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'cz';
+
+            document.getElementById('msg-cz').style.display = 'none';
+            document.getElementById('msg-en').style.display = 'none';
+            document.getElementById('msg-de').style.display = 'none';
+
+            if (lang === 'en') {
+                document.getElementById('msg-en').style.display = 'block';
+            } else if (lang === 'de') {
+                document.getElementById('msg-de').style.display = 'block';
+            } else {
+                document.getElementById('msg-cz').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
