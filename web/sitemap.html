@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uora | Mapa stránek / Sitemap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --brand-gold: #dca326;
+            --brand-red: #a63223;
+            --border-color: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+            display: block;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            color: var(--brand-gold);
+            border-color: var(--brand-gold);
+        }
+
+        /* --- CONTENT --- */
+        main {
+            flex: 1;
+            padding-top: 80px;
+            padding-bottom: 100px;
+        }
+
+        .section-label {
+            color: var(--brand-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
+        }
+
+        .sitemap-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 50px;
+        }
+
+        .sitemap-section {
+            margin-bottom: 40px;
+        }
+
+        .sitemap-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sitemap-section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--brand-gold);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .sitemap-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sitemap-list li {
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .sitemap-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--brand-red);
+        }
+
+        .sitemap-list a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .sitemap-list a:hover {
+            color: var(--brand-gold);
+        }
+
+        .sitemap-list p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 2px;
+            font-weight: 300;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        .footer-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-wrap a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-wrap a:hover {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+            h1 { font-size: 2.2rem; }
+            .sitemap-box { padding: 30px 20px; }
+            .footer-wrap { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index999.html"><img src="logo.svg" alt="Uora Logo"></a>
+            </div>
+            <div class="lang-switcher">
+                <button onclick="switchLang('cz')" id="btn-cz" class="lang-btn active">CZ</button>
+                <button onclick="switchLang('en')" id="btn-en" class="lang-btn">EN</button>
+                <button onclick="switchLang('de')" id="btn-de" class="lang-btn">DE</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <span class="section-label">Navigation Roadmap</span>
+        <h1 class="lang-txt" data-cz="Mapa stránek" data-en="Sitemap" data-de="Sitemap">Mapa stránek</h1>
+
+        <div class="sitemap-box">
+            
+            <div class="sitemap-section">
+                <h2 class="lang-txt" data-cz="Hlavní stránka" data-en="Main Page" data-de="Hauptseite">Hlavní stránka</h2>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="index999.html" class="lang-txt" data-cz="Úvodní strana" data-en="Home Page" data-de="Startseite">Úvodní strana</a>
+                        <p class="lang-txt" data-cz="Prezentace digitální a video produkce Uora." data-en="Presentation of digital and video production Uora." data-de="Präsentation der Digital- und Videoproduktion Uora."></p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sitemap-section">
+                <h2 class="lang-txt" data-cz="Sekce webu" data-en="Website Sections" data-de="Website-Bereiche">Sekce webu</h2>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="index999.html#o-nas" class="lang-txt" data-cz="O nás" data-en="About us" data-de="Über uns">O nás</a>
+                        <p class="lang-txt" data-cz="Kdo jsme, náš příběh a filozofie čisté tvorby." data-en="Who we are, our story and philosophy of clean creation." data-de="Wer wir sind, unsere Geschichte und Philosophie."></p>
+                    </li>
+                    <li>
+                        <a href="index999.html#projekty" class="lang-txt" data-cz="Naše práce / Reference" data-en="Our Work / Projects" data-de="Unsere Arbeit / Referenzen">Naše práce / Reference</a>
+                        <p class="lang-txt" data-cz="Ukázky realizovaných projektů a videí pro klienty." data-en="Examples of completed projects and videos for clients." data-de="Beispiele für abgeschlossene Projekte und Videos."></p>
+                    </li>
+                    <li>
+                        <a href="index999.html#sluzby" class="lang-txt" data-cz="Služby" data-en="Services" data-de="Leistungen">Služby</a>
+                        <p class="lang-txt" data-cz="Reklamní videa, obsah na sítě a dron & foto na míru." data-en="Commercial videos, social media content and custom drone & photo." data-de="Werbevideos, Social Media Content und Drohnenaufnahmen."></p>
+                    </li>
+                    <li>
+                        <a href="index999.html#kalkulace" class="lang-txt" data-cz="Konfigurátor videa" data-en="Video Configurator" data-de="Videokonfigurator">Konfigurátor videa</a>
+                        <p class="lang-txt" data-cz="Navrhněte si parametry a formát vaší budoucí video produkce." data-en="Configure the parameters and format of your future video production." data-de="Konfigurieren Sie die Parameter Ihrer zukünftigen Videoproduktion."></p>
+                    </li>
+                    <li>
+                        <a href="index999.html#kontakt" class="lang-txt" data-cz="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+                        <p class="lang-txt" data-cz="Fakturační údaje, e-maily, telefonní spojení a odběr tipů." data-en="Billing info, emails, phone connection and insights subscription." data-de="Rechnungsdaten, E-Mails, Telefonverbindung und Newsletter."></p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sitemap-section">
+                <h2 class="lang-txt" data-cz="Ostatní stránky" data-en="Other Pages" data-de="Andere Seiten">Ostatní stránky</h2>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="diky.html" class="lang-txt" data-cz="Děkovná stránka" data-en="Thank You Page" data-de="Dankeseite">Děkovná stránka</a>
+                        <p class="lang-txt" data-cz="Stránka zobrazená po úspěšném odeslání konfigurátoru nebo newsletteru." data-en="Page displayed after successful submission of the configurator or newsletter." data-de="Seite, die nach erfolgreichem Absenden des Formulars angezeigt wird."></p>
+                    </li>
+                    <li>
+                        <a href="sitemap.html" class="lang-txt" data-cz="Mapa stránek (Tato stránka)" data-en="Sitemap (This page)" data-de="Sitemap (Diese Seite)">Mapa stránek (Tato stránka)</a>
+                        <p class="lang-txt" data-cz="Přehledná roadmapa a struktura všech dostupných odkazů." data-en="Clear roadmap and structure of all available links." data-de="Übersichtliche Roadmap und Struktur aller verfügbaren Links."></p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="container">
+        <div class="footer-wrap">
+            <div>
+                <span class="lang-txt" 
+                      data-cz="&copy; 2026 Uora. Všechna práva vyhrazena." 
+                      data-en="&copy; 2026 Uora. All rights reserved." 
+                      data-de="&copy; 2026 Uora. Alle Rechte vorbehalten.">
+                      &copy; 2026 Uora. Všechna práva vyhrazena.
+                </span>
+            </div>
+            <div>
+                <a href="index999.html" class="lang-txt" data-cz="Zpět na hlavní web &rarr;" data-en="Back to main web &rarr;" data-de="Zurück zur Hauptseite &rarr;">Zpět na hlavní web &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'cz';
+
+        function switchLang(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('.lang-txt');
+            elements.forEach(el => {
+                const newText = el.getAttribute(`data-${lang}`);
+                if (newText) { el.innerHTML = newText; }
+            });
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+        }
+
+        // Automatická kontrola jazyka z URL parametru při načtení (pokud přichází z diky.html nebo hlavního webu)
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            if (langParam && ['cz', 'en', 'de'].includes(langParam)) {
+                switchLang(langParam);
+            }
+        });
+    </script>
+</body>
+</html>
