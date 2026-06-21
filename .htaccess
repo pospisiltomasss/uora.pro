@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# 1. Pokud někdo ručně napíše uora.pro/index.html, přesměruje ho to na čistou doménu uora.pro
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ https://uora.pro/ [R=301,L]
+
+# 2. Zajistí, že server pod samotnou doménou uora.pro na pozadí spustí index.html, ale neukáže ho v adrese
+DirectoryIndex index.html
