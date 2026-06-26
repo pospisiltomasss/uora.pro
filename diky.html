@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uora | Děkujeme</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --brand-gold: #dca326;
+            --brand-red: #a63223;
+            --border-color: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* --- HEADER --- */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 115px;
+            width: auto;
+            display: block;
+        }
+
+        /* --- THANKS CONTENT --- */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 0;
+        }
+
+        .thanks-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .status-label {
+            color: var(--brand-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--brand-gold);
+            color: var(--brand-gold);
+            padding: 14px 32px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--brand-gold);
+            color: #000;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* --- RESPONZIVITA --- */
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+            .thanks-box { padding: 40px 24px; }
+            h1 { font-size: 2.2rem; }
+            p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo.svg" alt="Uora Logo">
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="thanks-box">
+            <span class="status-label" id="statusLabel">Success</span>
+            <h1 id="headline">Děkujeme</h1>
+            <p id="message">Vaše konfigurace byla úspěšně odeslána. Brzy se vám ozveme zpět.</p>
+            <a href="index.html" id="btnBack" class="btn-back">Zpět na web</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            &copy; 2026 Uora. Všechna práva vyhrazena.
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            configurator: {
+                cz: {
+                    label: "Konfigurace přijata",
+                    title: "Skvělé, máme to!",
+                    text: "Děkujeme za odeslání specifikace vašeho videa. Návrh projdeme a co nejdříve se vám ozveme s detaily a dalším postupem.",
+                    btn: "Zpět na hlavní web"
+                },
+                en: {
+                    label: "Configuration received",
+                    title: "Great, we got it!",
+                    text: "Thank you for submitting your video specification. We will review your build and get back to you as soon as possible with details.",
+                    btn: "Back to website"
+                },
+                de: {
+                    label: "Konfiguration erhalten",
+                    title: "Großartig, wir haben es!",
+                    text: "Vielen Dank für die Übermittlung Ihrer Videospezifikation. Wir werden Ihren Entwurf prüfen und uns so schnell wie möglich mit Details bei Ihnen melden.",
+                    btn: "Zurück zur Website"
+                }
+            },
+            newsletter: {
+                cz: {
+                    label: "Odběr aktivován",
+                    title: "Jste na seznamu!",
+                    text: "Děkujeme za odběr našich měsíčních tipů. Odteď vám neuniknou žádné exkluzivní rady a novinky ze světa vizuálního marketingu.",
+                    btn: "Zpět na hlavní web"
+                },
+                en: {
+                    label: "Subscription active",
+                    title: "You're on the list!",
+                    text: "Thank you for subscribing to our monthly insights. From now on, you won't miss any exclusive advice or visual marketing updates.",
+                    btn: "Back to website"
+                },
+                de: {
+                    label: "Abonnement aktiv",
+                    title: "Sie sind auf der Liste!",
+                    text: "Vielen Dank, dass Sie unsere monatlichen Einblicke abonniert haben. Ab sofort verpassen Sie keine exklusiven Tipps mehr.",
+                    btn: "Zurück zur Website"
+                }
+            }
+        };
+
+        // 1. Načtení parametrů z URL adresy (?lang=cz&type=configurator)
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Detekce jazyka
+        let lang = urlParams.get('lang');
+        if (!lang || !['cz', 'en', 'de'].includes(lang)) {
+            lang = 'cz'; 
+        }
+        document.documentElement.lang = lang;
+
+        // Detekce zdroje (konfigurátor nebo newsletter)
+        let type = urlParams.get('type');
+        if (!type || !translations[type]) {
+            type = 'configurator';
+        }
+
+        // 2. Vytažení textů na základě detekce
+        const content = translations[type][lang];
+
+        // 3. Vložení textů do prvků na stránce
+        document.getElementById('statusLabel').innerText = content.label;
+        document.getElementById('headline').innerText = content.title;
+        document.getElementById('message').innerText = content.text;
+        
+        // 4. Nastavení tlačítka "Zpět na web" s uchováním jazyka
+        const btnBack = document.getElementById('btnBack');
+        btnBack.innerText = content.btn;
+        
+        // Nastavení URL, které po kliknutí spustí hlavní web v odpovídajícím jazyce
+        btnBack.href = "index.html";
+        
+        // Spuštění inicializace jazyka na hlavním webu, pokud se vrátí zpět
+        btnBack.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Pokud se vracíme v CZ, stačí čisté index.html, pro ostatní předáme parametr do skriptu na hlavním webu
+            if (lang === 'cz') {
+                window.location.href = "index.html";
+            } else {
+                // Přesměrování na index.html, kde se pomocí parametru nebo localStorage zapne správný jazyk
+                window.location.href = "index.html?lang=" + lang;
+            }
+        });
+
+        // Pro jistotu zajistíme, aby si hlavní web jazyk pamatoval i přes localStorage
+        localStorage.setItem('preferredLang', lang);
+    </script>
+</body>
+</html>

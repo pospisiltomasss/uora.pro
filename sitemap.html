@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa stránek | Uora</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Mapa stránek projektu Uora. Přehledný seznam všech sekcí a dostupných lokalizací.">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --brand-gold: #dca326;
+            --brand-red: #a63223;
+            --border-color: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 115px;
+            width: auto;
+            display: block;
+        }
+
+        .btn-back {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back:hover {
+            color: var(--brand-gold);
+        }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            flex: 1;
+            padding: 100px 0;
+        }
+
+        .section-label {
+            color: var(--brand-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 50px;
+        }
+
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .sitemap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .sitemap-card h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brand-gold);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sitemap-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sitemap-list a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 300;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+
+        .sitemap-list a:hover {
+            color: var(--brand-gold);
+            padding-left: 5px;
+        }
+
+        .sitemap-list span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- RESPONZIVITA --- */
+        @media (max-width: 992px) {
+            .sitemap-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+            main { padding: 60px 0; }
+            h1 { font-size: 2.5rem; margin-bottom: 40px; }
+            .sitemap-grid { grid-template-columns: 1fr; gap: 24px; }
+            .sitemap-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo.svg" alt="Uora Logo">
+            </div>
+            <a href="index.html" class="btn-back">&larr; Zpět na web</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <span class="section-label">Struktura webu</span>
+        <h1>Mapa stránek</h1>
+
+        <div class="sitemap-grid">
+            
+            <div class="sitemap-card">
+                <h2>Čeština (CZ)</h2>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="index.html">Hlavní stránka</a>
+                        <span>Úvodní prezentace a showreel</span>
+                    </li>
+                    <li>
+                        <a href="index.html#o-nas">O nás</a>
+                        <span>Filozofie, náš příběh a tým</span>
+                    </li>
+                    <li>
+                        <a href="index.html#projekty">Naše práce</a>
+                        <span>Ukázky projektů a případové studie</span>
+                    </li>
+                    <li>
+                        <a href="index.html#sluzby">Služby</a>
+                        <span>Reklamní videa, sociální sítě, dron</span>
+                    </li>
+                    <li>
+                        <a href="index.html#kalkulace">Konfigurátor</a>
+                        <span>Interaktivní návrh reklamy na míru</span>
+                    </li>
+                    <li>
+                        <a href="index.html#kontakt">Kontakt</a>
+                        <span>Spojení, fakturační údaje a newsletter</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sitemap-card">
+                <h2>English (EN)</h2>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="index.html?lang=en">Homepage</a>
+                        <span>Intro presentation and showreel</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=en#o-nas">About Us</a>
+                        <span>Our philosophy, story and team</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=en#projekty">Our Work</a>
+                        <span>Selected video projects and studies</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=en#sluzby">Services</a>
+                        <span>Commercials, social media, drone assets</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=en#kalkulace">Configurator</a>
+                        <span>Interactive custom video production build</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=en#kontakt">Contact</a>
+                        <span>Get in touch and newsletter subscription</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sitemap-card">
+                <h2>Deutsch (DE)</h2>
+                <ul class="sitemap-list">
+                    <li>
+                        <a href="index.html?lang=de">Startseite</a>
+                        <span>Hauptpräsentation und Showreel</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=de#o-nas">Über uns</a>
+                        <span>Philosophie, Geschichte und Team</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=de#projekty">Unsere Arbeit</a>
+                        <span>Ausgewählte Videoprojekte</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=de#sluzby">Leistungen</a>
+                        <span>Werbespots, Social Media, Drohnenaufnahmen</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=de#kalkulace">Konfigurator</a>
+                        <span>Interaktive Erstellung Ihres Werbevideos</span>
+                    </li>
+                    <li>
+                        <a href="index.html?lang=de#kontakt">Kontakt</a>
+                        <span>Verbindung und Newsletter-Anmeldung</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="container">
+        <div class="footer-wrap">
+            <div>
+                &copy; 2026 Uora. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
